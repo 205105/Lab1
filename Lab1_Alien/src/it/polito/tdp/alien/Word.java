@@ -24,4 +24,8 @@ public class Word {
 	public void setTranslation(String translation) {
 		this.translation = translation;
 	}
+	
+	public String getAlienWord() {
+		return alienWord;
+	}
 }

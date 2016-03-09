@@ -54,17 +54,26 @@ public class AlienController {
     	   parola1=st.nextToken().trim().toLowerCase();
     	   try{
     		   parola2=st.nextToken().trim().toLowerCase();
-    	   } catch(Error r){
+    	   } catch(Exception r){
     		   
     	   }
     	   if(parola1!=null && parola2!=null){
     		   a.addWord(parola1, parola2);
-    		   this.setTxtResult(parola1+" "+parola2);
+    		   this.setTxtResult(a.toString());
     	   }
     	   if(parola1!=null && parola2==null){
+    		   if(parola1.contains("?")){
+    			   //faccio la ricerca considerando ?. Se ci sono più parole corrispondenti restituisce la traduzione dell'ultima
+    			   int indice=parola1.indexOf('?');
+    			   String sottoStringaSx=parola1.substring(0, indice);
+    			   String sottoStringaDx=parola1.substring(indice+1); //forse devo cambiare gli indici
+    			   this.setTxtResult(a.translateWord(a.ricomponiAlienWord(sottoStringaSx, sottoStringaDx)));
+    		   } else {
+    			   //faccio la ricerca normale
     		   this.setTxtResult(a.translateWord(parola1));
+    		   }
     	   }
-    		   
+    	txtWord.setText("");
     }
     
     public void setTxtResult(String a){
@@ -73,7 +82,8 @@ public class AlienController {
     
     @FXML
     void doReset(ActionEvent event) {
-
+    	a.reset();
+    	this.setTxtResult("");
     }
     
 }
