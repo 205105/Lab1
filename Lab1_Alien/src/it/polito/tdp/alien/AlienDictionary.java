@@ -45,6 +45,19 @@ public class AlienDictionary {
 		}
 		return risultato;
 	}
+	 
+    public boolean controllaPuntiInterrogativi(String a){
+    	boolean b=true;
+    	int indice;
+    	if(a.contains("?")){
+    		indice=a.indexOf('?');
+    		String sottoParola=a.substring(indice+1); //devo metterlo il +1?
+    		if(sottoParola.contains("?")){
+    			b=false;
+    		}
+    	}
+    	return b;
+    }
 	
 	public String toString(){
 		String tot="";

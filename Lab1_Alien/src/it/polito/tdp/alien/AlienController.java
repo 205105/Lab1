@@ -64,10 +64,14 @@ public class AlienController {
     	   if(parola1!=null && parola2==null){
     		   if(parola1.contains("?")){
     			   //faccio la ricerca considerando ?. Se ci sono più parole corrispondenti restituisce la traduzione dell'ultima
+    			   if(a.controllaPuntiInterrogativi(parola1)){
     			   int indice=parola1.indexOf('?');
     			   String sottoStringaSx=parola1.substring(0, indice);
     			   String sottoStringaDx=parola1.substring(indice+1); //forse devo cambiare gli indici
     			   this.setTxtResult(a.translateWord(a.ricomponiAlienWord(sottoStringaSx, sottoStringaDx)));
+    			   } else {
+    				   this.setTxtResult("puoi inserire un solo punto interrogativo");
+    			   }
     		   } else {
     			   //faccio la ricerca normale
     		   this.setTxtResult(a.translateWord(parola1));
@@ -85,5 +89,5 @@ public class AlienController {
     	a.reset();
     	this.setTxtResult("");
     }
-    
+   
 }
